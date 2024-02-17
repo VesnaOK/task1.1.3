@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class UserDaoHibernateImpl implements UserDao {
-    Session session = Util.getSession().openSession();
+    private final Session session = Util.getSession().openSession();
     public UserDaoHibernateImpl() {
 
     }

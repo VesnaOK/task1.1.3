@@ -30,9 +30,10 @@ public class Util {
         }
         return connection;
     }
-    private static SessionFactory sessionFactory;
+
+    private static SessionFactory sessionFactory = null;
+
     public static SessionFactory getSession() {
-        SessionFactory sessionFactory = null;
         if (sessionFactory == null) {
             try {
                 Configuration configuration = new Configuration();
@@ -59,9 +60,12 @@ public class Util {
         }
         return sessionFactory;
     }
-    public static void closeSession(SessionFactory sessionFactory) {
+
+    public static void closeSession() {
         try {
-            sessionFactory.close();
+            if (sessionFactory != null) {
+                sessionFactory.close();
+            }
         } catch (HibernateException e) {
             e.printStackTrace();
         }
